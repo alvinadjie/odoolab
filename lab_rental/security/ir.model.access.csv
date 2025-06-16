@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_peminjaman_admin,access_peminjaman_admin,model_order_peminjaman,group_rental_sales_manager,1,1,1,1
+access_peminjaman_user,access_peminjaman_user,model_order_peminjaman,base.group_user,1,1,1,1
+access_peminjaman_line_user,access_peminjaman_line_user,model_order_peminjaman_line,base.group_user,1,1,1,1
+access_fakultas_user,access_fakultas_user,model_fakultas,base.group_user,1,1,1,1
+access_product_replacement_user,access_product_replacement_user,model_product_replacement,base.group_user,1,1,1,1
+access_scan_product_user,access_scan_product_user,model_scan_product_order_peminjaman,base.group_user,1,1,1,1

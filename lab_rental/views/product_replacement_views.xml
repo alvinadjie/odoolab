@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+   
+    <record id="product_replacement_view_form" model="ir.ui.view">
+        <field name="name">product.replacement.view.form</field>
+        <field name="model">product.replacement</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Done" name="done"
+                            class="oe_highlight"
+                            type="object"
+                            invisible="status != 'review' or not is_admin"
+                            />
+                    <field name="status" widget="statusbar"
+                           nolabel="1"/>
+                </header>
+                <sheet>
+                    <group>
+                            <field name="lo_id" readonly="1"/>
+                            <field name="is_admin" invisible="1"/>
+                            <field name="user_id" readonly="1"/>
+                            <field name="email"/>
+                            <field name="student_id"/>
+                            <field name="department_id"/>
+                            <field name="batch_year"/>
+                            <field name="product_id"/>
+                            <field name="qty"/>
+                            <field name="report_type"/>
+                            <field name="date"/>
+                            <field name="description"/>
+                    </group>
+                    
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    
+
+</odoo>

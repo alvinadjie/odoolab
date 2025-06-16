@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="loan_request_mail_template" model="mail.template">
+            <field name="name">Email to Admin (Lecturers &amp; Assistants) – New Loan Request</field>
+            <field name="model_id" ref="lab_rental.model_order_peminjaman"/>
+            <field name="email_from">"${object.partner_id.email | safe}"</field>
+            <field name="email_to">${ctx.emails | safe}</field>
+            <field name="subject">New Equipment Loan Request</field>
+            <field name="auto_delete" eval="False" />
+        </record>
+
+        <record id="approve_mail_template" model="mail.template">
+            <field name="name">Email to Student – Request Approved</field>
+            <field name="model_id" ref="lab_rental.model_order_peminjaman"/>
+            <field name="email_from">"${object.partner_id.email | safe}"</field>
+            <field name="email_to">${ctx.emails | safe}</field>
+            <field name="subject"> Your Equipment Loan Request Status</field>
+            <field name="auto_delete" eval="False" />
+        </record>
+
+        <record id="reject_mail_template" model="mail.template">
+            <field name="name">Email to Student – Request Rejected</field>
+            <field name="model_id" ref="lab_rental.model_order_peminjaman"/>
+            <field name="email_from">"${object.partner_id.emal | safe}"</field>
+            <field name="email_to">${ctx.emails | safe}</field>
+            <field name="subject"> Your Equipment Loan Request Status</field>
+            <field name="auto_delete" eval="False" />
+        </record>
+
+        <record id="loan_reminder_mail_template" model="mail.template">
+            <field name="name"> Email to Student – Reminder Before or On Due Date</field>
+            <field name="model_id" ref="lab_rental.model_order_peminjaman"/>
+            <field name="email_from">"${object.partner_id.email | safe}"</field>
+            <field name="subject"> Reminder: Upcoming Equipment Return</field>
+            <field name="email_to">${ctx.emails | safe}</field>
+            <field name="auto_delete" eval="False" />
+        </record>
+
+        <record id="overdue_return_mail_template" model="mail.template">
+            <field name="name"> Email to Student – Overdue Return</field>
+            <field name="model_id" ref="lab_rental.model_order_peminjaman"/>
+            <field name="email_from">"${object.partner_id_2.name | safe}"</field>
+            <field name="subject"> Overdue Equipment Return</field>
+            <field name="email_to">${ctx.emails | safe}</field>
+            <field name="auto_delete" eval="False" />
+        </record>
+
+        <record id="overdue_return_admin_mail_template" model="mail.template">
+            <field name="name"> Email to Lecturer/Admin – Overdue Return by Student</field>
+            <field name="model_id" ref="lab_rental.model_order_peminjaman"/>
+            <field name="email_from">"${object.partner_id.email | safe}"</field>
+            <field name="subject"> Overdue Equipment Return by Student</field>
+            <field name="email_to">${ctx.emails | safe}</field>
+            <field name="auto_delete" eval="False" />
+        </record>
+
+        <record id="return_success_mail_template" model="mail.template">
+            <field name="name">Email to Student – Successful Return</field>
+            <field name="model_id" ref="lab_rental.model_order_peminjaman"/>
+            <field name="email_from">"${object.partner_id.email | safe}"</field>
+            <field name="subject"> Equipment Successfully Returned</field>
+            <field name="email_to">${ctx.emails | safe}</field>
+            <field name="auto_delete" eval="False" />
+        </record>
+
+        <record id="return_success_by_student_mail_template" model="mail.template">
+            <field name="name">Email to Lecturer/Admin – Item Returned by Student</field>
+            <field name="model_id" ref="lab_rental.model_order_peminjaman"/>
+            <field name="email_from">{{ object.user_id.email }}</field>
+            <field name="subject">Equipment Returned by Student</field>
+            <field name="email_to">{{ object.user_id.email }}</field>
+            <field name="auto_delete" eval="False" />
+        </record>
+
+
+        <record id="product_replacement_damage_mail_template" model="mail.template">
+            <field name="name">Email Report of Equipment Damage </field>
+            <field name="model_id" ref="lab_rental.model_product_replacement"/>
+            <field name="email_from">{{ object.user_id.email }}</field>
+            <field name="subject">Report of Equipment Damage </field>
+            <field name="email_to">{{ object.request_to_id.email }}</field>
+            <field name="auto_delete" eval="False" />
+        </record>
+
+        <record id="product_replacement_loss_mail_template" model="mail.template">
+            <field name="name">Report of Equipment Loss</field>
+            <field name="model_id" ref="lab_rental.model_product_replacement"/>
+            <field name="email_from">{{ object.user_id.email }}</field>
+            <field name="subject">Equipment Returned by Student</field>
+            <field name="email_to">{{ object.request_to_id.email }}</field>
+            <field name="auto_delete" eval="False" />
+        </record>
+
+        
+    </data>
+</odoo>

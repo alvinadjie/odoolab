@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- order peminjaman tree view-->
+    <record id="rorder_peminjaman_view_tree" model="ir.ui.view">
+        <field name="name">order.peminjaman.view.tree</field>
+        <field name="model">order.peminjaman</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="student_id"/>
+                <field name="fakultas_id"/>
+                <field name="tahun_masuk"/>
+                <field name="tanggal_peminjaman"/>
+                <field name="tanggal_pengembalian"/>
+                <field name="actual_return_date"/>
+            </tree>
+        </field>
+    </record>
+    <!--Rental order contract form view-->
+    <record id="order_peminjaman_view_form" model="ir.ui.view">
+        <field name="name">order.peminjaman.view.form</field>
+        <field name="model">order.peminjaman</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="is_admin" invisible="0"/>
+                    <button string="Request Loan" name="ajukan_pinjaman"
+                            class="oe_highlight"
+                            type="object"
+                            invisible="status != 'new'"/>
+                    <button string="Replace Product Request" name="defect_product"
+                            class="oe_highlight"
+                            type="object"
+                            invisible="status != 'confirmed'"/>
+                    <button string="Approve" name="approve"
+                            class="btn-primary"
+                            type="object"
+                            invisible="status != 'wait' or not is_admin"/>
+                    <button string="Reject" name="tolak"
+                            class="btn-primary"
+                            type="object"
+                            invisible="status != 'wait' or not is_admin"/>
+                    <button string="Done" name="done"
+                            class="btn-primary"
+                            type="object"
+                            invisible="status != 'confirmed' or status == 'pending' or not is_admin"/>
+                    <field name="status" widget="statusbar"
+                           nolabel="1"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="user_id" domain="[('id', 'not in', domain_request_to_ids)]" readonly="1"/>
+                            <field name="student_id" readonly="1"/>
+                            <field name="fakultas_id"/>
+                            <field name="tahun_masuk"/>
+                            <field name="tanggal_peminjaman"/>
+                            <field name="tanggal_pengembalian"/>
+                            <field name="purpose"/>
+                        </group>
+                        <group>
+                            <field name="alasan_penolakan" readonly="not is_admin" invisible="not is_admin"/>
+                            <field name="domain_request_to_ids" invisible="1"/>
+                            <field name="request_to_id" domain="[('id', 'in', domain_request_to_ids)]"/>
+                            <field name="actual_return_date"/>
+                        </group>
+                    </group>
+                    <field name="order_peminjaman_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="product_id" required="1" domain="[('not_for_rent','=',False)]"/>
+                                <field name="qty_available" required="1"/>
+                                <field name="qty" required="1"/>
+                                <field name="uom_id"/>
+                            </tree>
+                        </field>
+                    
+
+                    <notebook>
+                        <page string="Product Replacement Form" invisible="not pr_id">
+                            <field name='pr_id' readonly="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!--    Rental order contract action-->
+    <record id="order_peminjaman_contract_action" model="ir.actions.act_window">
+        <field name="name">Loan Order</field>
+        <field name="res_model">order.peminjaman</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!--    Rental contract menu-->
+    <menuitem id="rental_order_contract_menu"
+              name="Loan Order"
+              action="order_peminjaman_contract_action"/>
+
+</odoo>

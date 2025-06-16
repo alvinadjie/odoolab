@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--Sale order view form for adding a new button-->
+    <record id="res_partner_view_form" model="ir.ui.view">
+        <field name="name">res.partner.view.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']"
+                   position="before">
+                <field name="student_id" invisble="0"/>
+                <field name="fakultas_id" invisble="0"/>
+                <field name="tahun_masuk" invisble="0"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="res_user_simple_view_form" model="ir.ui.view">
+        <field name="name">res.user.view.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_simple_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']"
+                   position="before">
+                <field name="student_id"/>
+                <field name="fakultas_id"/>
+                <field name="tahun_masuk"/>
+                
+            </xpath>
+        </field>
+    </record>
+
+    <record id="res_user_view_form" model="ir.ui.view">
+        <field name="name">res.user.view.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='share']"
+                   position="before">
+                <field name="student_id"/>
+                <field name="fakultas_id"/>
+                <field name="tahun_masuk"/>
+                
+            </xpath>
+        </field>
+    </record>   
+
+</odoo>

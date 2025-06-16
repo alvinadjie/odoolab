@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_scan_product_wizard_form" model="ir.ui.view">
+            <field name="name">view_scan_product_wizard_form</field>
+            <field name="model">scan.product.order.peminjaman</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                            <field name="product_id" domain="[('not_for_rent','=',False)]"/>
+                            <field name="qty_available" invisible="not product_id"/>
+                            <field name="qty" invisible="not product_id"/>
+                    </group>
+                    <br/>
+                    <footer>
+                        <button name="create_loan_order" string="Create Loan Order" type="object" class="btn-primary"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="scan_order_peminjaman_contract_action" model="ir.actions.act_window">
+            <field name="name">Scan or Input Product code/name</field>
+            <field name="res_model">scan.product.order.peminjaman</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem id="scan_rental_order_contract_menu"
+                name="Scan Product"
+                action="scan_order_peminjaman_contract_action" sequence="5"/>
+</odoo>
