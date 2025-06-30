@@ -7,8 +7,15 @@
                 <form>
                     <group>
                             <field name="product_id" domain="[('not_for_rent','=',False)]"/>
+                            <field name="categ_id" invisible="not product_id"/>
+                            <field name="default_code" invisible="not product_id"/>
+                            <field name="barcode" invisible="not product_id"/>
+                            <field name="brand_type" invisible="not product_id"/>
+                            <field name="condition" invisible="not product_id"/>
+                            <field name="not_for_rent" invisible="not product_id"/>
                             <field name="qty_available" invisible="not product_id"/>
                             <field name="qty" invisible="not product_id"/>
+                            
                     </group>
                     <br/>
                     <footer>

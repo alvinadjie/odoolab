@@ -74,7 +74,8 @@ class OrderPeminjaman(models.Model):
         # self.status = 'pending'
         # form_id = self.env.ref('lab_rental.product_replacement_view_form').id
         context = {
-            'default_lo_id':self.id
+            'default_lo_id':self.id,
+            'default_product_id':self.order_peminjaman_ids[0].product_id.id
         }
         return {'name': 'Product Replacement',
                 'type': 'ir.actions.act_window',

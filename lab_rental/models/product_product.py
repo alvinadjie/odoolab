@@ -6,6 +6,6 @@ class ProductTemplate(models.Model):
 
     condition = fields.Char()
     brand_type = fields.Char('Brand / Type')
-    not_for_rent = fields.Boolean()
+    not_for_rent = fields.Boolean(string='Not for Lend')
     
 

@@ -9,6 +9,12 @@ class ScanProductOrderPeminjaman(models.TransientModel):
 
     product_id = fields.Many2one('product.product')
     qty_available  = fields.Float(related='product_id.qty_available')
+    categ_id = fields.Many2one('product.category', related='product_id.categ_id')
+    default_code = fields.Char(related='product_id.default_code')
+    barcode = fields.Char(related='product_id.barcode')
+    brand_type = fields.Char(related='product_id.brand_type')
+    condition = fields.Char(related='product_id.condition')
+    not_for_rent = fields.Boolean(related='product_id.not_for_rent')
     qty = fields.Float()
 
     def create_loan_order(self):
