@@ -56,7 +56,7 @@ class OrderPeminjaman(models.Model):
     @api.model
     def cron_overdue(self):
         mail_template = self.env.ref('lab_rental.overdue_return_admin_mail_template')
-        active_loan = self.env['order.peminjaman'].search([('status','=', 'confirmed'),('tanggal_pengembalian','<',datetime.today())])
+        active_loan = self.env['order.peminjaman'].search([('status','=', 'confirmed'),('tanggal_pengembalian','>',datetime.today())])
         for loan in active_loan:
             mail_template.send_mail(loan.id, force_send=True)
     
@@ -65,8 +65,14 @@ class OrderPeminjaman(models.Model):
         #to be create cron h-3 and due date
         #wording soon and today based on tanggal
         mail_template = self.env.ref('lab_rental.loan_reminder_mail_template')
+        today = fields.Date.today()
+        target_date =  [
+            today + timedelta(days=2),
+            today + timedelta(days=1),
+            today
+        ]
         reminder_date = self.tanggal_pengembalian - timedelta(days=3)
-        active_loan = self.env['order.peminjaman'].search([('status','=', 'confirmed'),('tanggal_pengembalian','<',datetime.today())])
+        active_loan = self.env['order.peminjaman'].search([('status','=', 'confirmed'),('tanggal_pengembalian','in',target_date)])
         for loan in active_loan:
             mail_template.send_mail(loan.id, force_send=True)
     

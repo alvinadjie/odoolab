@@ -12,5 +12,16 @@
             <field name="interval_type">days</field>
             <field name="numbercall">-1</field>
         </record>
+
+        <record id="rental_reminder_scheduler_recurring_action" model="ir.cron">
+            <field name="name">Reminder Return</field>
+            <field name="model_id" ref="model_order_peminjaman"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_reminder()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+        </record>
     </data>
 </odoo>
