@@ -71,7 +71,7 @@ class OrderPeminjaman(models.Model):
             today + timedelta(days=1),
             today
         ]
-        reminder_date = self.tanggal_pengembalian - timedelta(days=3)
+        # reminder_date = self.tanggal_pengembalian - timedelta(days=3)
         active_loan = self.env['order.peminjaman'].search([('status','=', 'confirmed'),('tanggal_pengembalian','in',target_date)])
         for loan in active_loan:
             mail_template.send_mail(loan.id, force_send=True)
