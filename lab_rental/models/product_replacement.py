@@ -40,5 +40,3 @@ class ProductReplacement(models.Model):
     
     def done(self):
         self.status = 'done'
-        self.lo_id.done()
-        self.lo_id.create_receipt(self.lo_id.partner_id)
