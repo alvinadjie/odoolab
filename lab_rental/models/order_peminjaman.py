@@ -67,6 +67,7 @@ class OrderPeminjaman(models.Model):
         mail_template = self.env.ref('lab_rental.loan_reminder_mail_template')
         today = fields.Date.today()
         target_date =  [
+            today + timedelta(days=3),
             today + timedelta(days=2),
             today + timedelta(days=1),
             today
