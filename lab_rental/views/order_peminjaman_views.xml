@@ -44,7 +44,7 @@
                     <button string="Done" name="done"
                             class="btn-primary"
                             type="object"
-                            invisible="status != 'confirmed' or status == 'pending' or not is_admin"/>
+                            invisible="status not in ['confirmed','pending'] or not is_admin"/>
                     <field name="status" widget="statusbar"
                            nolabel="1"/>
                 </header>
